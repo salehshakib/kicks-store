@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="relative z-10 shrink-0 hidden lg:block">
             <div className="text-[120px] font-black text-white tracking-tighter leading-none flex items-start select-none font-rubik">
               KICKS
-              <span className="bg-kicks-accent text-white w-10 h-10 rounded-full flex items-center justify-center text-4xl mt-4 -ml-2">
+              <span className="bg-kicks-accent text-white size-8 rounded-full flex items-center justify-center text-4xl mt-4">
                 +
               </span>
             </div>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         {/* Main Black Footer Section - sits behind/below with a negative margin to overlap */}
-        <div className="bg-kicks-black rounded-[48px] overflow-hidden relative -mt-24 md:-mt-32 pt-32 md:pt-48 pb-48 z-10">
+        <div className="bg-kicks-black rounded-[48px] overflow-hidden relative -mt-24 md:-mt-32 pt-32 md:pt-48 pb-20 md:pb-48 z-10">
           <div className="container mx-auto px-6 md:px-12 relative z-10">
             {/* Footer Links */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 mb-32">
@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
 
           {/* Massive Background KICKS Watermark - WHITE and overflow hidden as requested */}
-          <div className="absolute bottom-0 left-1/2  -translate-x-1/2 w-[200%] overflow-hidden pointer-events-none select-none z-0 translate-y-1/2 mb-12">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200%] overflow-hidden pointer-events-none select-none z-0 translate-y-1/2 mb-12">
             <p className="text-[30vw] font-black tracking-tighter text-white leading-none text-center whitespace-nowrap font-rubik uppercase">
               KICKS
             </p>

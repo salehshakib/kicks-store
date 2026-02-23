@@ -8,7 +8,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="container mx-auto pt-4 pb-12">
-        <h1 className="text-4xl sm:text-5xl md:text-[223.5px] font-bold leading-tight md:leading-[265px] tracking-tight text-center uppercase text-kicks-black mt-8 md:mt-32 mb-4 md:mb-8 relative z-10 font-rubik">
+        <h1 className="text-4xl sm:text-5xl md:text-[223.5px] font-bold leading-tight md:leading-[265px] tracking-tight text-center uppercase text-kicks-black mt-16 md:mt-32 mb-4 md:mb-8 relative z-10 font-rubik">
           Do it <span className="text-kicks-blue">Right</span>
         </h1>
 
@@ -22,7 +22,7 @@ export default function Home() {
           />
 
           {/* Top Left Vertical Ribbon - Hidden on Mobile */}
-          <div className="hidden md:flex absolute top-[400px] left-0 w-[337px] h-[67px] bg-kicks-black text-kicks-gray-200 items-center justify-center z-20 -rotate-90 origin-top-left rounded-b-[16px]">
+          <div className="hidden md:flex absolute top-[100px] md:top-[400px] left-0 w-[337px] h-[67px] bg-kicks-black text-kicks-gray-200 items-center justify-center z-20 -rotate-90 origin-top-left rounded-b-[16px]">
             <span className="text-base tracking-widest font-semibold uppercase font-rubik">
               Nike product of the year
             </span>
@@ -65,10 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Spacing adjustments between sections */}
-      <div className="mt-[150px] ">
-        <ProductList />
-      </div>
+      <ProductList />
 
       {/* Categories */}
       <CategorySection />
