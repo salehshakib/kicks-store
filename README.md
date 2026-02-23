@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 # kicks-store
 
-A full‑stack e‑commerce storefront built with **Next.js 16** (App Router) and **Tailwind CSS**. The project mimics a modern sneaker shop called _Kicks Store_, drawing inspiration from a Figma design and powered by the public [Platzi Fake Store API](https://api.escuelajs.co). It demonstrates:
+A full‑stack e‑commerce storefront built with **Next.js 16** (App Router) and **Tailwind CSS**. Developed with support from antigravity and GitHub Copilot, the project mimics a modern sneaker shop called _Kicks Store_, drawing inspiration from a Figma design and powered by the public [Platzi Fake Store API](https://api.escuelajs.co). It demonstrates:
 
 - Responsive mobile‑first layout matching a provided Figma spec
 - Product, cart and category pages with dynamic content
