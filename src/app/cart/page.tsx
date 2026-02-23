@@ -7,8 +7,8 @@ import { Product } from "@/types";
 export default async function CartPage() {
   let relatedProducts: Product[] = [];
   try {
-    const allProducts = await fetchProducts();
-    relatedProducts = allProducts.slice(0, 4);
+    const allProducts = await fetchProducts({ limit: 4 });
+    relatedProducts = allProducts;
   } catch {
     relatedProducts = [];
   }

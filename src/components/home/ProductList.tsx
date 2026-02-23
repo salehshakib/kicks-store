@@ -3,9 +3,7 @@ import ProductCard from "@/components/product/ProductCard";
 import Link from "next/link";
 
 export default async function ProductList() {
-  const products = await fetchProducts();
-
-  console.log({ products });
+  const products = await fetchProducts({ limit: 4 });
 
   return (
     <section className="py-20 md:py-[150px]">

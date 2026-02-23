@@ -27,9 +27,9 @@ export default async function ProductDetail({ params }: PageProps) {
   try {
     product = await fetchProductById(id);
     if (!product) notFound();
-    relatedProducts = await fetchProducts();
+    relatedProducts = await fetchProducts({ limit: 8 });
     relatedProducts = relatedProducts
-      .filter((p) => p.id !== product.id)
+      .filter((p) => p.id !== product!.id)
       .slice(0, 4);
   } catch {
     notFound();

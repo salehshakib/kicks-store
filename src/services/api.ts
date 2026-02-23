@@ -2,12 +2,24 @@ import { Product, Category } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
 
+export interface FetchProductsOptions {
+  categoryId?: number;
+  offset?: number;
+  limit?: number;
+}
+
 export const fetchProducts = async (
-  categoryId?: number,
+  options: FetchProductsOptions = {},
 ): Promise<Product[]> => {
-  const url = categoryId
-    ? `${BASE_URL}/categories/${categoryId}/products`
-    : `${BASE_URL}/products`;
+  const { categoryId, offset = 0, limit = 10 } = options;
+
+  let url: string;
+  if (categoryId) {
+    url = `${BASE_URL}/categories/${categoryId}/products?offset=${offset}&limit=${limit}`;
+  } else {
+    url = `${BASE_URL}/products?offset=${offset}&limit=${limit}`;
+  }
+
   const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
