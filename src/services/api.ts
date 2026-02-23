@@ -1,6 +1,6 @@
 import { Product, Category } from "@/types";
 
-const BASE_URL = "https://api.escuelajs.co/api/v1";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 export const fetchProducts = async (
   categoryId?: number,

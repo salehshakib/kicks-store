@@ -5,6 +5,8 @@ import Link from "next/link";
 export default async function ProductList() {
   const products = await fetchProducts();
 
+  console.log({ products });
+
   return (
     <section className="py-20 md:py-[150px]">
       <div className="w-[358px] md:w-[1320px] mx-auto ">
@@ -22,8 +24,8 @@ export default async function ProductList() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {products?.slice(0, 4).map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+          {products?.slice(0, 4).map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
