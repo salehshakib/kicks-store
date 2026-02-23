@@ -1,23 +1,44 @@
 import { fetchProducts, fetchCategories } from "@/services/api";
 import ProductCard from "@/components/product/ProductCard";
+import ProductFilters from "@/components/products/ProductFilters";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Suspense } from "react";
 
 const PAGE_SIZE = 10;
 
 interface PageProps {
-  searchParams: Promise<{ page?: string; category?: string }>;
+  searchParams: Promise<{
+    page?: string;
+    category?: string;
+    title?: string;
+    price_min?: string;
+    price_max?: string;
+  }>;
 }
 
 export default async function ProductsPage({ searchParams }: PageProps) {
-  const { page: pageParam, category: categoryParam } = await searchParams;
+  const {
+    page: pageParam,
+    category: categoryParam,
+    title,
+    price_min,
+    price_max,
+  } = await searchParams;
 
   const currentPage = Math.max(1, parseInt(pageParam ?? "1", 10));
   const categoryId = categoryParam ? parseInt(categoryParam, 10) : undefined;
   const offset = (currentPage - 1) * PAGE_SIZE;
 
   const [products, categories] = await Promise.all([
-    fetchProducts({ offset, limit: PAGE_SIZE, categoryId }),
+    fetchProducts({
+      offset,
+      limit: PAGE_SIZE,
+      categoryId,
+      title,
+      priceMin: price_min ? Number(price_min) : undefined,
+      priceMax: price_max ? Number(price_max) : undefined,
+    }),
     fetchCategories(),
   ]);
 
@@ -28,10 +49,13 @@ export default async function ProductsPage({ searchParams }: PageProps) {
   const hasPrev = currentPage > 1;
   const hasNext = products.length === PAGE_SIZE;
 
-  const buildHref = (p: number, cat?: number) => {
+  const buildHref = (p: number) => {
     const params = new URLSearchParams();
     if (p > 1) params.set("page", String(p));
-    if (cat) params.set("category", String(cat));
+    if (categoryId) params.set("category", String(categoryId));
+    if (title) params.set("title", title);
+    if (price_min) params.set("price_min", price_min);
+    if (price_max) params.set("price_max", price_max);
     const qs = params.toString();
     return `/products${qs ? `?${qs}` : ""}`;
   };
@@ -49,32 +73,16 @@ export default async function ProductsPage({ searchParams }: PageProps) {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex gap-2 flex-wrap mb-8">
-          <Link
-            href={buildHref(1)}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold font-rubik uppercase tracking-wide transition-colors cursor-pointer ${
-              !categoryId
-                ? "bg-kicks-black text-white"
-                : "bg-white text-kicks-black hover:bg-kicks-black hover:text-white"
-            }`}
-          >
-            All
-          </Link>
-          {validCategories.map((cat) => (
-            <Link
-              key={cat.id}
-              href={buildHref(1, cat.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold font-rubik uppercase tracking-wide transition-colors cursor-pointer ${
-                categoryId === cat.id
-                  ? "bg-kicks-black text-white"
-                  : "bg-white text-kicks-black hover:bg-kicks-black hover:text-white"
-              }`}
-            >
-              {cat.name}
-            </Link>
-          ))}
-        </div>
+        {/* Filters */}
+        <Suspense>
+          <ProductFilters
+            categories={validCategories}
+            currentCategory={categoryId}
+            currentTitle={title}
+            currentPriceMin={price_min}
+            currentPriceMax={price_max}
+          />
+        </Suspense>
 
         {/* Products Grid */}
         {products.length === 0 ? (
@@ -102,7 +110,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
           <div className="flex items-center justify-center gap-3 mt-12">
             {hasPrev ? (
               <Link
-                href={buildHref(currentPage - 1, categoryId)}
+                href={buildHref(currentPage - 1)}
                 className="w-10 h-10 rounded-full border border-kicks-gray-300 flex items-center justify-center bg-white hover:bg-kicks-black hover:text-white hover:border-kicks-black transition-all cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -121,7 +129,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
                 return (
                   <Link
                     key={p}
-                    href={buildHref(p, categoryId)}
+                    href={buildHref(p)}
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold font-rubik transition-all cursor-pointer ${
                       isActive
                         ? "bg-kicks-black text-white"
@@ -136,7 +144,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
 
             {hasNext ? (
               <Link
-                href={buildHref(currentPage + 1, categoryId)}
+                href={buildHref(currentPage + 1)}
                 className="w-10 h-10 rounded-full border border-kicks-gray-300 flex items-center justify-center bg-white hover:bg-kicks-black hover:text-white hover:border-kicks-black transition-all cursor-pointer"
               >
                 <ChevronRight className="w-4 h-4" />
