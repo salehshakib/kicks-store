@@ -1,6 +1,7 @@
 import { fetchProducts, fetchCategories } from "@/services/api";
 import ProductCard from "@/components/product/ProductCard";
 import ProductFilters from "@/components/products/ProductFilters";
+import ProductGridSkeleton from "@/components/skeletons/ProductGridSkeleton";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
@@ -74,7 +75,28 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         </div>
 
         {/* Filters */}
-        <Suspense>
+        <Suspense
+          fallback={
+            <div className="flex flex-col gap-4 mb-8 animate-pulse">
+              <div className="flex gap-2 flex-wrap">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="h-9 w-20 rounded-lg bg-kicks-gray-300"
+                  />
+                ))}
+              </div>
+              <div className="flex flex-col md:flex-row gap-3">
+                <div className="flex-1 h-10 rounded-lg bg-kicks-gray-300" />
+                <div className="flex gap-2">
+                  <div className="h-10 w-24 rounded-lg bg-kicks-gray-300" />
+                  <div className="h-10 w-24 rounded-lg bg-kicks-gray-300" />
+                </div>
+                <div className="h-10 w-24 rounded-lg bg-kicks-gray-300" />
+              </div>
+            </div>
+          }
+        >
           <ProductFilters
             categories={validCategories}
             currentCategory={categoryId}
@@ -85,25 +107,27 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         </Suspense>
 
         {/* Products Grid */}
-        {products.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 text-center">
-            <p className="text-xl font-semibold text-kicks-gray-500 font-rubik">
-              No products found.
-            </p>
-            <Link
-              href="/products"
-              className="mt-4 text-sm underline text-kicks-black hover:text-kicks-blue transition-colors"
-            >
-              Clear filters
-            </Link>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
+        <Suspense fallback={<ProductGridSkeleton count={PAGE_SIZE} />}>
+          {products.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-24 text-center">
+              <p className="text-xl font-semibold text-kicks-gray-500 font-rubik">
+                No products found.
+              </p>
+              <Link
+                href="/products"
+                className="mt-4 text-sm underline text-kicks-black hover:text-kicks-blue transition-colors"
+              >
+                Clear filters
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </Suspense>
 
         {/* Pagination */}
         {(hasPrev || hasNext) && (

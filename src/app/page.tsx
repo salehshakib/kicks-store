@@ -1,7 +1,10 @@
 import ProductList from "@/components/home/ProductList";
 import CategorySection from "@/components/home/CategorySection";
 import ReviewsSection from "@/components/home/ReviewsSection";
+import ProductGridSkeleton from "@/components/skeletons/ProductGridSkeleton";
+import CategorySkeleton from "@/components/skeletons/CategorySkeleton";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -65,10 +68,29 @@ export default function Home() {
         </div>
       </section>
 
-      <ProductList />
+      <Suspense
+        fallback={
+          <section className="py-20 pt-4 md:py-37.5 md:pt-12.5">
+            <div className="w-89.5 md:w-330 mx-auto">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12 animate-pulse">
+                <div className="h-10 md:h-20 w-64 rounded-xl bg-kicks-gray-300" />
+                <div className="h-12 w-44 rounded-lg bg-kicks-gray-300" />
+              </div>
+              <ProductGridSkeleton
+                count={4}
+                columns="grid-cols-2 lg:grid-cols-4"
+              />
+            </div>
+          </section>
+        }
+      >
+        <ProductList />
+      </Suspense>
 
       {/* Categories */}
-      <CategorySection />
+      <Suspense fallback={<CategorySkeleton />}>
+        <CategorySection />
+      </Suspense>
 
       {/* Reviews */}
       <ReviewsSection />
