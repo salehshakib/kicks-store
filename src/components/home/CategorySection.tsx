@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 export default function CategorySection() {
   return (
     <section className="bg-kicks-black py-24 text-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="w-[358px] md:w-[1320px] mx-auto ">
         <h2 className="text-[32px] md:text-[74px] font-bold text-white uppercase mb-12 tracking-tight leading-[1.1] md:leading-[95%] font-rubik">
           Categories
         </h2>

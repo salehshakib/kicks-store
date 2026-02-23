@@ -40,8 +40,8 @@ const reviews = [
 
 export default function ReviewsSection() {
   return (
-    <section className="bg-white py-24">
-      <div className="container mx-auto px-4 md:px-8">
+    <section className="py-24">
+      <div className="w-[358px] md:w-[1320px] mx-auto ">
         {/* Header */}
         <div className="flex justify-between items-end mb-12">
           <h2 className="text-5xl md:text-7xl font-black text-kicks-black uppercase tracking-tighter leading-none">
