@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+import { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -10,15 +14,6 @@ const nextConfig = {
         protocol: "http",
         hostname: "**", // Optional: Also allow non-SSL images
       },
-      { protocol: "https", hostname: "placehold.co" },
-      { protocol: "https", hostname: "i.imgur.com" },
-      { protocol: "https", hostname: "api.escuelajs.co" },
-      { protocol: "https", hostname: "placeimg.com" },
-      { protocol: "https", hostname: "cloudflare-ipfs.com" },
-      { protocol: "https", hostname: "avatars.githubusercontent.com" },
-      { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "i.pravatar.cc" },
     ],
   },
 };
