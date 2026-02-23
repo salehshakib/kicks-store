@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import { fetchCategories } from "@/services/api";
 
-export default function Footer() {
+export default async function Footer() {
+  const allCategories = await fetchCategories();
+  const categories = allCategories.filter(
+    (c) => c.image?.startsWith("http") && c.image.includes("."),
+  );
+
   return (
     <footer className="bg-[#E7E7E3] pt-12 md:pt-20 pb-8">
       <div className="max-w-[1320px] mx-auto  relative">
@@ -57,20 +63,13 @@ export default function Footer() {
                   Categories
                 </h3>
                 <ul className="flex flex-col gap-4 text-white font-semibold font-open-sans text-lg">
-                  {[
-                    "Runners",
-                    "Sneakers",
-                    "Basketball",
-                    "Outdoor",
-                    "Golf",
-                    "Hiking",
-                  ].map((cat) => (
-                    <li key={cat}>
+                  {categories.map((cat) => (
+                    <li key={cat.id}>
                       <Link
-                        href="/"
+                        href={`/products?category=${cat.id}`}
                         className="hover:text-kicks-accent transition-colors"
                       >
-                        {cat}
+                        {cat.name}
                       </Link>
                     </li>
                   ))}
