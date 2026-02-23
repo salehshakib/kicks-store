@@ -38,9 +38,9 @@ export default async function ProductsPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen bg-kicks-gray-200">
-      <div className="container pt-16 md:pt-40 pb-8 w-[358px] md:w-[1320px] mx-auto ">
+      <div className="container pt-20 md:pt-40 pb-8 w-[358px] md:w-[1320px] mx-auto ">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div className="flex flex-row items-center justify-between gap-4 mb-8">
           <h1 className="text-3xl md:text-5xl font-bold uppercase text-kicks-black font-rubik leading-tight">
             All Products
           </h1>

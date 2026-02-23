@@ -25,7 +25,7 @@ export default async function CategorySection() {
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/categories/${category.slug ?? category.id}`}
+              href={`/products?category=${category.id}`}
               className="group relative h-[450px] md:h-[600px] rounded-[32px] md:rounded-[48px] overflow-hidden bg-kicks-gray-100"
             >
               <Image

@@ -40,7 +40,7 @@ export default async function ProductDetail({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-kicks-gray-200">
       {/* Product Section */}
-      <div className="container pt-16 md:pt-40 pb-6  md:pb-12 w-[358px] md:w-[1320px] mx-auto ">
+      <div className="container pt-20 md:pt-40 pb-6  md:pb-12 w-[358px] md:w-[1320px] mx-auto ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left: Images */}
           <div className="md:sticky md:top-28">

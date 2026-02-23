@@ -6,7 +6,7 @@ export default async function ProductList() {
   const products = await fetchProducts({ limit: 4 });
 
   return (
-    <section className="py-20 md:py-[150px]">
+    <section className="py-20 pt-4 md:py-[150px]">
       <div className="w-[358px] md:w-[1320px] mx-auto ">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12">
           <h2 className="text-[32px] md:text-[74px] font-bold text-kicks-black uppercase tracking-tight leading-[1.1] md:leading-[95%] max-w-2xl font-rubik">

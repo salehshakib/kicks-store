@@ -15,7 +15,7 @@ export default async function CartPage() {
 
   return (
     <div className="min-h-screen bg-kicks-gray-200">
-      <div className="container pt-16 md:pt-40 pb-8 w-[358px] md:w-[1320px] mx-auto  md:pb-16 ">
+      <div className="container pt-20 md:pt-40 pb-8 w-[358px] md:w-[1320px] mx-auto  md:pb-16 ">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl font-semibold text-kicks-black font-rubik">
