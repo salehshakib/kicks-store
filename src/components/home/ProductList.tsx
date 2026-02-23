@@ -9,15 +9,15 @@ export default async function ProductList() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12">
-          <h2 className="text-5xl md:text-7xl font-black text-kicks-black uppercase tracking-tighter leading-none max-w-2xl">
+          <h2 className="text-[32px] md:text-[74px] font-bold text-kicks-black uppercase tracking-tight leading-[1.1] md:leading-[95%] max-w-2xl font-rubik">
             Don&apos;t miss out
             <br className="hidden md:block" /> new drops
           </h2>
           <Link
             href="/products"
-            className="w-fit bg-kicks-blue text-white font-bold uppercase tracking-wide px-8 py-4 rounded-xl hover:bg-blue-700 transition-colors shadow-lg"
+            className="w-fit bg-kicks-blue text-white font-bold uppercase tracking-wide px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors shadow-lg text-sm md:text-base"
           >
-            Shop New Drops
+            SHOP NEW DROPS
           </Link>
         </div>
 

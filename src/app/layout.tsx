@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Rubik, Open_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
 import Header from "@/components/layout/Header";
@@ -9,6 +9,18 @@ const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${rubik.variable} font-sans antialiased min-h-screen flex flex-col`}
+        className={`${rubik.variable} ${openSans.variable} ${inter.variable} font-open-sans antialiased min-h-screen flex flex-col`}
       >
         <QueryProvider>
           <Header />

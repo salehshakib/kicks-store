@@ -9,13 +9,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-rubik)"],
+        rubik: ["var(--font-rubik)"],
+        sans: ["var(--font-nunito-sans)"],
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
         kicks: {
-          blue: "#4A69E2",
+          blue: "#234FE0",
           accent: "#FFA52F",
           black: "#232321",
           white: "#FFFFFF",

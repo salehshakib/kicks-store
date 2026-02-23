@@ -1,55 +1,57 @@
+"use client";
+
 import Link from "next/link";
-import { Search, User, Menu, ChevronDown } from "lucide-react";
+import { Search, User, ChevronDown, Menu } from "lucide-react";
 import CartBadge from "@/components/cart/CartBadge";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-      <div className="container mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-        {/* Mobile Menu & Nav Links */}
-        <div className="flex items-center gap-6 flex-1">
-          <button className="lg:hidden p-2 -ml-2 text-kicks-black hover:bg-gray-50 rounded-lg">
-            <Menu className="w-6 h-6" />
+    <header className="fixed top-4 md:top-8 left-0 right-0 z-50 transition-all duration-300 pointer-events-none">
+      <div className="mx-auto w-[358px] md:w-[1320px] bg-kicks-off-white rounded-[12px] md:rounded-[24px] h-[52px] md:h-[96px] px-4 md:px-8 flex items-center justify-between shadow-sm border border-white/20 pointer-events-auto">
+        {/* Left: Nav (Desktop) / Menu (Mobile) */}
+        <div className="flex-1 flex items-center gap-6">
+          <button className="lg:hidden p-2 -ml-2 text-kicks-black hover:bg-gray-200/50 rounded-lg">
+            <Menu className="w-5 h-5" />
           </button>
-          <nav className="hidden lg:flex gap-8 font-semibold text-kicks-black items-center">
+
+          <nav className="hidden lg:flex items-center gap-8 font-semibold text-kicks-black text-sm uppercase tracking-wider font-rubik">
             <Link
               href="/"
               className="hover:text-kicks-blue transition-colors relative group"
             >
               New Drops 🔥
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-kicks-blue transition-all group-hover:w-full"></span>
             </Link>
             <Link
               href="/"
               className="hover:text-kicks-blue transition-colors flex items-center gap-1"
             >
-              Men <ChevronDown className="w-4 h-4" />
+              Men <ChevronDown className="w-4 h-4 opacity-50" />
             </Link>
             <Link
               href="/"
               className="hover:text-kicks-blue transition-colors flex items-center gap-1"
             >
-              Women <ChevronDown className="w-4 h-4" />
+              Women <ChevronDown className="w-4 h-4 opacity-50" />
             </Link>
           </nav>
         </div>
 
-        {/* Brand Logo */}
-        <div className="flex-1 flex justify-center">
+        {/* Center: Brand Logo */}
+        <div className="shrink-0">
           <Link
             href="/"
-            className="text-3xl lg:text-4xl font-black tracking-tighter text-kicks-black uppercase"
+            className="text-xl md:text-[32px] font-bold font-rubik tracking-tighter text-kicks-black uppercase"
           >
-            Kicks
+            KICKS
           </Link>
         </div>
 
-        {/* Utility Icons */}
-        <div className="flex items-center justify-end gap-3 lg:gap-6 flex-1 text-kicks-black">
-          <button className="hidden lg:block p-2 hover:bg-gray-100 rounded-full transition-colors">
+        {/* Right: Icons & Cart */}
+        <div className="flex-1 flex items-center justify-end gap-2 md:gap-6 text-kicks-black">
+          <button className="hidden sm:block p-2 hover:bg-gray-200/50 rounded-full transition-colors">
             <Search className="w-6 h-6" />
           </button>
-          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+          <button className="hidden sm:block p-2 hover:bg-gray-200/50 rounded-full transition-colors">
             <User className="w-6 h-6" />
           </button>
           <Link
